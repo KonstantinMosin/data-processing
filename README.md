@@ -1,2 +1,1 @@
-# data-processing
-Automatic data frame processing for AutoML
+# Automatic data frame processing for AutoML
