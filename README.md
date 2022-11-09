@@ -1,5 +1,4 @@
 # Automatic data frame processing for AutoML
---------------------------------------------
 
 Environment for knowledge analysis - WEKA:
 https://github.com/Waikato/weka
@@ -11,7 +10,7 @@ Dataset - vertical farming:
 https://www.kaggle.com/datasets/midouazerty/work-for-parmavir
 
 ## Iteration 1. Manual dataset configuration, launching AutoWEKA, comparing the results.
-----------------------------------------------------------------------------------------
+
 load the dataset and see the type of features
 ```python
 import pandas as pd
