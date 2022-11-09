@@ -12,14 +12,15 @@ https://www.kaggle.com/datasets/midouazerty/work-for-parmavir
 
 ## Iteration 1. Manual dataset configuration, launching AutoWEKA, comparing the results.
 ----------------------------------------------------------------------------------------
-* load the dataset and see the type of features
+load the dataset and see the type of features
 ```python
 import pandas as pd
 
 df = pd.read_csv('../data/cubes.csv', low_memory=False)
 df.dtypes
 ```
-*Unnamed: 0               int64
+```
+Unnamed: 0               int64
 Cube ID                  int64
 Timestamp                int64
 Temperature Layer A     object
@@ -28,14 +29,17 @@ Door                   float64
 Humidity Layer A       float64
 Humidity Layer B       float64
 dtype: object
+```
 
-* columns `Unnamed: 0` and `Door` are not interesting
+
+columns `Unnamed: 0` and `Door` are not interesting
 
 ```python
 df = df.drop(columns=['Unnamed: 0','Door']) # exclude index and unnecessary columns
 ```
 
-* move `Timestamp` to `0` and cast `Temperature Layer A` and `Temperature Layer B` to float
+
+move `Timestamp` to `0` and cast `Temperature Layer A` and `Temperature Layer B` to float
 
 ```python
 df['Timestamp'] = df['Timestamp'] - df['Timestamp'].min() # move the timer to the start
@@ -48,7 +52,8 @@ df['Humidity Layer A'] = df['Humidity Layer A']
 df['Humidity Layer B'] = df['Humidity Layer B']
 ```
 
-* delete rows that do not contain any information
+
+delete rows that do not contain any information
 
 ```python
 df = df.dropna(how='all', subset=[
@@ -60,7 +65,8 @@ df = df.dropna(how='all', subset=[
 # clear data from empty rows
 ```
 
-* build histograms
+
+build histograms
 
 ```python
 import matplotlib.pyplot as plt
@@ -88,7 +94,8 @@ plt.show()
 
 ![plot](./img/hist1.jpg)
 
-* remove from dataset outliers and look at the result
+
+remove from dataset outliers and look at the result
 
 ```python
 import numpy as np
@@ -99,6 +106,7 @@ df['Humidity Layer B'] = [x if x < 25 else np.nan for x in df['Humidity Layer B'
 ```
 
 ![plot](./img/hist2.jpg)
+
 
 | feature             | launch parameters*    | estimated error  | metrics**                                            | total of configuration | result***          |
 |:------------------- | --------------------- |:----------------:| ---------------------------------------------------- |:----------------------:|:------------------:|
