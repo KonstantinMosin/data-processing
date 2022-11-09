@@ -9,7 +9,7 @@ https://github.com/automl/autoweka
 Dataset - vertical farming:
 https://www.kaggle.com/datasets/midouazerty/work-for-parmavir
 
-## Iteration 1. Launching AutoWEKA, comparing the results.
+## Iteration 1. Manual dataset configuration, launching AutoWEKA, comparing the results.
 
 | feature             | launch parameters*    | estimated error  | metrics**                                            | total of configuration | result***          |
 |:------------------- | --------------------- |:----------------:| ---------------------------------------------------- |:----------------------:|:------------------:|
