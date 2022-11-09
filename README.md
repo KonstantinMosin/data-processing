@@ -22,7 +22,7 @@ https://www.kaggle.com/datasets/midouazerty/work-for-parmavir
 | Humidity layer B    | 5 min<br/>1024MB<br/>1 run  | 0.97352648       | 0.4358<br/>0.7695<br/>0.9735<br/>89.5807<br/>90.1227 | 49       | trees.M5P          |
 | Humidity layer B    | 15 min<br/>2048MB<br/>4 run | 0.94186592       | 0.4897<br/>0.7469<br/>0.9419<br/>86.9592<br/>87.1918 | 182      | trees.M5P          |
 
-\* CLI: '-timeLimit x -memLimit y -parallelRund z'
+\* CLI: `-timeLimit x -memLimit y -parallelRund z`
 
 ** metrics: correlation coefficient, mean absolute error, root mean squared error, reative squared error %, root relative squared error %
 
