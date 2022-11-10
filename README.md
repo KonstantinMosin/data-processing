@@ -114,7 +114,7 @@ For each feature apply 3 main parameters of AutoWEKA: time limit, memory limit a
 then metrics collected such as estimated error rate, training time on evaluation dataset, correlation coefficient,
 mean absolute error, root mean squared error, relative absolute error, root relative squared error. For a quantitative characteristic of performance resources, we take the number of applied configurations, for efficiency, we take the ratio
 
-![equation](https://latex.codecogs.com/svg.image?1%20-%20%5Cfrac%7BMAE_k%7D%7BMAE_0%7D),
+![equation](https://latex.codecogs.com/svg.image?1%20-%20%5Cfrac%7BMAE_k%7D%7BMAE_0%7D)
 
 where k is the run number.
 
