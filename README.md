@@ -11,6 +11,8 @@ https://www.kaggle.com/datasets/midouazerty/work-for-parmavir
 
 ## Iteration 1. Manual dataset configuration, launching AutoWEKA, comparing the results.
 
+### Data preprocessing
+
 load the dataset and see the type of features
 ```python
 import pandas as pd
@@ -30,13 +32,11 @@ Humidity Layer B       float64
 dtype: object
 ```
 
-
 columns `Unnamed: 0` and `Door` are not interesting
 
 ```python
 df = df.drop(columns=['Unnamed: 0','Door']) # exclude index and unnecessary columns
 ```
-
 
 move `Timestamp` to `0` and cast `Temperature Layer A` and `Temperature Layer B` to float
 
@@ -51,7 +51,6 @@ df['Humidity Layer A'] = df['Humidity Layer A']
 df['Humidity Layer B'] = df['Humidity Layer B']
 ```
 
-
 delete rows that do not contain any information
 
 ```python
@@ -63,7 +62,6 @@ df = df.dropna(how='all', subset=[
     ])
 # clear data from empty rows
 ```
-
 
 build histograms
 
@@ -93,7 +91,6 @@ plt.show()
 
 ![plot](./img/hist1.jpg)
 
-
 remove from dataset outliers and look at the result
 
 ```python
@@ -106,20 +103,22 @@ df['Humidity Layer B'] = [x if x < 25 else np.nan for x in df['Humidity Layer B'
 
 ![plot](./img/hist2.jpg)
 
+### Work with AutoWEKA
 
-| feature             | launch parameters*    | estimated error  | metrics**                                            | total of configuration | result***          |
-|:------------------- | --------------------- |:----------------:| ---------------------------------------------------- |:----------------------:|:------------------:|
-| Temperature layer A | 5 min<br/>1024MB<br/>1 run  | 0.56024657       | 0.9781<br/>0.3842<br/>0.5157<br/>18.5953<br/>21.1105 | 18       | trees.RandomForest |
-| Temperature layer A | 15 min<br/>2048MB<br/>4 run | 0.56024657       | 0.9781<br/>0.3842<br/>0.5157<br/>18.5953<br/>21.1105 | 89       | trees.RandomForest |
-| Temperature layer B | 5 min<br/>1024MB<br/>1 run  | 0.57685781       | 0.9778<br/>0.3794<br/>0.5131<br/>18.2875<br/>21.1949 | 23       | trees.RandomForest |
-| Temperature layer B | 15 min<br/>2048MB<br/>4 run | 0.57685781       | 0.9778<br/>0.3794<br/>0.5131<br/>18.2875<br/>21.1949 | 23       | trees.RandomForest |
-| Humidity layer A    | 5 min<br/>1024MB<br/>1 run  | 0.98145939       | 0.3704<br/>0.7756<br/>0.9815<br/>92.7262<br/>92.8883 | 58       | trees.M5P          |
-| Humidity layer A    | 15 min<br/>2048MB<br/>4 run | 0.93240144       | 0.4704<br/>0.7382<br/>0.9324<br/>88.2446<br/>88.2453 | 177      | trees.RandomTree   |
-| Humidity layer B    | 5 min<br/>1024MB<br/>1 run  | 0.97352648       | 0.4358<br/>0.7695<br/>0.9735<br/>89.5807<br/>90.1227 | 49       | trees.M5P          |
-| Humidity layer B    | 15 min<br/>2048MB<br/>4 run | 0.94186592       | 0.4897<br/>0.7469<br/>0.9419<br/>86.9592<br/>87.1918 | 182      | trees.M5P          |
+system: AMD Ryzen 3 2200U, 4GB RAM
 
-\* CLI: `-timeLimit x -memLimit y -parallelRund z`
+version: WEKA 3.8.6, AutoWEKA 2.6.4
 
-** metrics: correlation coefficient, mean absolute error, root mean squared error, reative squared error %, root relative squared error %
+Take for consideration 4 feature: `Temperature layer A`, `Temperature layer B`, `Humidity layer A` and `Humidity layer B`.
+For each feature apply 3 main parameters of AutoWEKA: time limit, memory limit and parallel runs,
+then metrics collected such as estimated error rate, training time on evaluation dataset, correlation coefficient,
+mean absolute error, root mean squared error, relative absolute error, root relative squared error. For a quantitative characteristic of performance resources, we take the number of applied configurations, for efficiency, we take the ratio
 
-*** best classifier
+![equation](https://latex.codecogs.com/svg.image?1%20-%20%5Cfrac%7BMAE_k%7D%7BMAE_0%7D),
+
+where k is the run number.
+
+
+
+
+
