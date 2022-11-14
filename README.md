@@ -196,3 +196,43 @@ df
 ```
 246405 rows × 6 columns
 ```
+
+#### Humidity Layer A
+| N | params        | EER    | training time  | CC     | MAE    | RMSE   | RAE, %  | RRSE, % | Total of cfg | best classifier   |
+| - | ------------- | ------ | -------------- | ------ | ------ | ------ | ------- | ------- | ------------ | ----------------- |
+| 1 | 15m 1024MB 1r | 0.9324 | 0.171s         | 0.4704 | 0.7382 | 0.9324 | 88.2517 | 88.2464 | 104          | RandomTree        |
+| 2 | 30m 1536MB 2r | 0.9324 | 0.312s         | 0.4704 | 0.7382 | 0.9324 | 88.2517 | 88.2464 | 121          | RandomTree        |
+| 3 | 45m 2048MB 4r | 0.9324 | 0.321s         | 0.4704 | 0.7382 | 0.9324 | 88.2517 | 88.2464 | 246          | RandomTree        |
+
+#### Humidity Layer B
+| N | params        | EER    | training time  | CC     | MAE    | RMSE   | RAE, %  | RRSE, % | Total of cfg | best classifier   |
+| - | ------------- | ------ | -------------- | ------ | ------ | ------ | ------- | ------- | ------------ | ----------------- |
+| 1 | 15m 1024MB 1r | 0.9418 | 0.047s         | 0.4897 | 0.7470 | 0.9419 | 86.9621 | 87.1917 | 80           | IBk               |
+| 2 | 30m 1536MB 2r | 0.9418 | 0.344s         | 0.4897 | 0.7470 | 0.9419 | 86.9621 | 87.1917 | 141          | AttributeSelected |
+| 3 | 45m 2048MB 4r | 0.9418 | 0.235s         | 0.4897 | 0.7470 | 0.9419 | 86.9621 | 87.1917 | 258          | AttributeSelected |
+
+
+Getting rid of the feature Door affected the deterioration of metrics.
+In the end, got a sample cleared of empty rows and outliers.
+
+```python
+df
+```
+
+|        |   Cube ID |   Timestamp |   Temperature Layer A |   Temperature Layer B |   Door |   Humidity Layer A |   Humidity Layer B |
+|-------:|----------:|------------:|----------------------:|----------------------:|-------:|-------------------:|-------------------:|
+|      0 |        49 |           0 |              nan      |              nan      |      0 |          nan       |          nan       |
+|      1 |        95 |           1 |              nan      |               25.7119 |    nan |          nan       |          nan       |
+|      3 |        55 |           1 |              nan      |              nan      |    nan |          nan       |            8.59441 |
+|      5 |         5 |           5 |              nan      |              nan      |      0 |          nan       |          nan       |
+|      6 |        73 |           6 |               23.7766 |              nan      |    nan |          nan       |          nan       |
+|      8 |        94 |           7 |              nan      |               22.7561 |    nan |          nan       |          nan       |
+|      9 |        99 |           9 |              nan      |              nan      |    nan |          nan       |            9.35242 |
+...
+| 400177 |        35 |     4316882 |               19.2345 |              nan      |    nan |          nan       |          nan       |
+| 400178 |        98 |     4316884 |               17.5335 |              nan      |    nan |          nan       |          nan       |
+| 400179 |         5 |     4316887 |               18.9341 |              nan      |    nan |          nan       |          nan       |
+
+```
+251978 rows × 7 columns
+```
