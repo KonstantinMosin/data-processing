@@ -152,7 +152,7 @@ so let's compare the results of AutoWEKA for samples with and without the `Door`
 | 2 | 30m 1536MB 2r | 0.5587 | 8.293s         | 0.9844 | 0.3306 | 0.5654 | 34.3778 | 17.7940 | 213          | RandomForest      |
 | 3 | 45m 2048MB 4r | 0.5587 | 7.484s         | 0.9844 | 0.3306 | 0.5654 | 34.3778 | 17.7940 | 316          | RandomForest      |
 
-Analyzing the results, we see identical metrics for features `Temperature Layer A` and `Temperature Layer B`,
+Analyzing the results, see identical metrics for features `Temperature Layer A` and `Temperature Layer B`,
 but feature `Humidity Layer A` has changed for the worse and feature `Humidity Layer B` has changed for the better.
 Let's turn to the histograms of the sample and see outliers for features `Humidity Layer A` and `Humidity Layer B`.
 Clear the sample from outliers and compare the results for features `Humidity Layer A` and `Humidity Layer B`.
